@@ -21,6 +21,12 @@ let current = 0;
 let score = 0;
 let quizEl = document.getElementById('quiz');
 
+function startQuiz() {
+  document.getElementById('start-screen').style.display = 'none';
+  quizEl.style.display = 'block';
+  renderQuestion();
+}
+
 function renderQuestion() {
   let q = quizData[current];
   let html = `<h2>${q.question}</h2>`;
@@ -42,8 +48,9 @@ function selectAnswer(answer) {
 
 function renderForm() {
   quizEl.innerHTML = `
-    <h2>Parabéns! Você acertou ${score} de ${quizData.length} perguntas.</h2>
-    <p>Insira seus dados para calcular o frete:</p>
+    <div class="confetti"></div>
+    <h2>🎊 Você acertou ${score} de ${quizData.length} perguntas!</h2>
+    <p>Insira seus dados para calcular o frete e receber seu presente:</p>
     <input type="text" id="nome" placeholder="Nome completo" />
     <input type="text" id="cpf" placeholder="CPF" oninput="this.value=formatCpf(this.value)" />
     <input type="text" id="cep" placeholder="CEP" oninput="this.value=formatCep(this.value)" />
@@ -55,11 +62,16 @@ function renderForm() {
 function calcularFrete() {
   document.getElementById('status').innerHTML = '<div class="loader"></div> Calculando frete...';
   setTimeout(() => {
-    document.getElementById('quiz').innerHTML = `
-      <h2>Frete calculado: R$20,00</h2>
-      <p>Clique abaixo para pagar e receber seu ovo de Páscoa.</p>
+    quizEl.innerHTML = `
+      <h2>✅ Frete calculado: R$20,00</h2>
+      <p>Clique abaixo para pagar e receber seu ovo de Páscoa:</p>
       <a href="https://pay.kiwify.com.br/aIEcNcQ" class="button">Pagar Frete e Receber Ovo</a>
     `;
+    confetti({
+      particleCount: 150,
+      spread: 100,
+      origin: { y: 0.6 }
+    });
   }, 2000);
 }
 
@@ -77,5 +89,3 @@ function formatCep(value) {
     .replace(/(\d{5})(\d)/, '$1-$2')
     .substring(0, 9);
 }
-
-renderQuestion();

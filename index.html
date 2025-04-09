@@ -10,10 +10,16 @@
 <body>
   <div class="container">
     <div class="card" id="quiz-container">
-      <h1>Quiz Cacau Show</h1>
-      <div id="quiz"></div>
+      <img src="https://logospng.org/download/cacau-show/logo-cacau-show-1024.png" alt="Cacau Show" class="logo" />
+      <div id="start-screen">
+        <h1>🎉 Parabéns! 🎉</h1>
+        <p>Você acabou de ganhar um Ovo de Páscoa exclusivo da Cacau Show!</p>
+        <button onclick="startQuiz()">Clique aqui para resgatar</button>
+      </div>
+      <div id="quiz" style="display: none;"></div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
