@@ -100,3 +100,22 @@ a.button:hover {
     max-height: 100px;
   }
 }
+
+.ovo-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+.ovo-options img {
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+.ovo-options img:hover {
+  transform: scale(1.05);
+}

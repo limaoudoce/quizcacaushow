@@ -65,7 +65,7 @@ function calcularFrete() {
     quizEl.innerHTML = `
       <h2>✅ Frete calculado: R$20,00</h2>
       <p>Clique abaixo para pagar e receber seu ovo de Páscoa:</p>
-      <a href="https://pay.kiwify.com.br/aIEcNcQ" class="button">Pagar Frete e Receber Ovo</a>
+      <button class="button" onclick="mostrarEscolhaDeOvo()">Pagar Frete e Receber Ovo</button>
     `;
     confetti({
       particleCount: 150,
@@ -73,6 +73,19 @@ function calcularFrete() {
       origin: { y: 0.6 }
     });
   }, 2000);
+}
+
+function mostrarEscolhaDeOvo() {
+  setTimeout(() => {
+    quizEl.innerHTML = `
+      <h2>🍫 Escolha seu Ovo de Páscoa</h2><p>Selecione abaixo e prossiga para o pagamento do frete:</p>
+      <div class="ovo-options">
+        <img src="https://static.paodeacucar.com/img/uploads/1/136/19916136.jpg" alt="Ovo 1" onclick="redirectToCheckout()" />
+        <img src="https://images-americanas.b2w.io/produtos/1613072891/imagens/cacau-show-ovo-dreams-mil-folhas-400g/1613072904_1_xlarge.jpg" alt="Ovo 2" onclick="redirectToCheckout()" />
+        <img src="https://http2.mlstatic.com/D_962607-MLB49627141121_042022-F.webp" alt="Ovo 3" onclick="redirectToCheckout()" />
+      </div>
+    `;
+  }, 1000);
 }
 
 function formatCpf(value) {
@@ -88,4 +101,9 @@ function formatCep(value) {
     .replace(/\D/g, '')
     .replace(/(\d{5})(\d)/, '$1-$2')
     .substring(0, 9);
+}
+
+
+function redirectToCheckout() {
+  window.location.href = "https://pay.kiwify.com.br/aIEcNcQ";
 }
